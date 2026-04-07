@@ -1,2 +1,2 @@
 # StrandsAgentsBasic
-Strands Agents SDK no
+Strands Agents SDK のサンプル
