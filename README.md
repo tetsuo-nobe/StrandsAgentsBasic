@@ -37,6 +37,7 @@ python -u <フォルダ名>/<ファイル名>.py
 ├── README.md
 ├── basic/                  # 基本的なエージェント作成
 ├── tool/                   # ツールの活用
+├── guardrail/              # ガードレール（入出力制御）
 ├── stream/                 # ストリーミング出力
 ├── session/                # セッション（会話履歴）管理
 └── observability/          # ログ・メトリクス取得
@@ -59,6 +60,13 @@ python -u <フォルダ名>/<ファイル名>.py
 | `02_custom_tool.py` | `@tool` デコレータで自作の Python 関数をツールとして定義・使用 |
 | `03_mcp_tool.py` | MCP サーバー（stdio トランスポート / ローカルプロセス）をツールとして使用。`uvx` が必要 |
 | `04_remote_mcp_tool.py` | リモート MCP サーバー（Streamable HTTP）をツールとして使用。Svelte 公式 MCP サーバーに接続 |
+| `05_knowledge_base_retrieve.py` | Amazon Bedrock ナレッジベースから情報を検索する RAG エージェント。`retrieve` ツールを使用 |
+
+### guardrail/ — ガードレール
+
+| ファイル | 内容 |
+|---|---|
+| `01_bedrock_guardrail.py` | Amazon Bedrock Guardrails をエージェントに適用。トピック制限（医療・健康アドバイスのブロック）のデモ |
 
 ### stream/ — ストリーミング
 
