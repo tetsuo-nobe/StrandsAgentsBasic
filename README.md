@@ -37,9 +37,10 @@ python -u <フォルダ名>/<ファイル名>.py
 ├── README.md
 ├── basic/                  # 基本的なエージェント作成
 ├── tool/                   # ツールの活用
+├── hooks/                  # フック（ライフサイクルイベント）
 ├── guardrail/              # ガードレール（入出力制御）
 ├── stream/                 # ストリーミング出力
-├── session/                # セッション（会話履歴）管理
+├── session/                # セッション（会話履歴）管理・永続化
 └── observability/          # ログ・メトリクス取得
 ```
 
@@ -62,6 +63,14 @@ python -u <フォルダ名>/<ファイル名>.py
 | `04_remote_mcp_tool.py` | リモート MCP サーバー（Streamable HTTP）をツールとして使用。Svelte 公式 MCP サーバーに接続 |
 | `05_knowledge_base_retrieve.py` | Amazon Bedrock ナレッジベースから情報を検索する RAG エージェント。`retrieve` ツールを使用 |
 
+### hooks/ — フック（ライフサイクルイベント）
+
+| ファイル | 内容 |
+|---|---|
+| `01_basic_hooks.py` | 関数ベースのフックで各ライフサイクルイベント（呼び出し前後・モデル呼び出し前後・ツール呼び出し前後）を監視 |
+| `02_hook_provider.py` | `HookProvider` プロトコルを実装したクラスベースのフック。状態を保持してメトリクスを収集 |
+| `03_tool_guard_hook.py` | `cancel_tool` を使ったツール実行のガード。特定条件でツール呼び出しをキャンセルするパターン |
+
 ### guardrail/ — ガードレール
 
 | ファイル | 内容 |
@@ -80,6 +89,7 @@ python -u <フォルダ名>/<ファイル名>.py
 | ファイル | 内容 |
 |---|---|
 | `01_conversation_session.py` | 同一 Agent インスタンスを使い回すことで会話履歴を保持。`agent.messages` で履歴を確認 |
+| `02_file_session_manager.py` | `FileSessionManager` で会話履歴をファイルに永続化。プログラム再起動後もセッションを復元 |
 
 ### observability/ — 可観測性
 
