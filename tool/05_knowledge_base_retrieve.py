@@ -6,7 +6,7 @@ Amazon Bedrock ナレッジベースから情報を検索する RAG エージェ
   1. Amazon Bedrock でナレッジベースを作成し、S3 バケットのドキュメントと同期しておく
   2. 環境変数を設定する:
      set KNOWLEDGE_BASE_ID=XXXXXXXXXX     (ナレッジベースの ID)
-     set AWS_REGION=us-east-1             (ナレッジベースのリージョン)
+     set AWS_REGION=us-west-2             (ナレッジベースのリージョン)
 
 必要なパッケージ:
   pip install strands-agents strands-agents-tools
@@ -21,11 +21,11 @@ from strands_tools import retrieve
 
 # --- 設定 ---
 # LLM モデルのリージョン（Bedrock のモデル呼び出し先）
-MODEL_REGION = "us-east-1"
+MODEL_REGION = "us-west-2"
 # ナレッジベースのリージョン（retrieve ツールが参照する先）
 # retrieve ツールは環境変数 AWS_REGION を参照し、未設定時は us-west-2 をデフォルトとする
 # ここで明示的に設定することで、ナレッジベースのリージョンを制御する
-os.environ.setdefault("AWS_REGION", "us-east-1")
+os.environ.setdefault("AWS_REGION", "us-west-2")
 KB_REGION = os.environ["AWS_REGION"]
 
 # ナレッジベース ID の確認

@@ -14,7 +14,7 @@ Bedrock Guardrails を使うことで、エージェントの入出力に対し�
   2. 環境変数を設定する:
      set GUARDRAIL_ID=your_guardrail_id   (ガードレールの ID)
      set GUARDRAIL_VERSION=DRAFT          (バージョン。省略時は DRAFT)
-     set AWS_REGION=us-east-1             (リージョン)
+     set AWS_REGION=us-west-2             (リージョン)
 
 必要なパッケージ:
   pip install strands-agents
@@ -27,7 +27,7 @@ from strands import Agent
 from strands.models.bedrock import BedrockModel
 
 # --- 設定 ---
-MODEL_REGION = os.environ.get("AWS_REGION", "us-east-1")
+MODEL_REGION = os.environ.get("AWS_REGION", "us-west-2")
 GUARDRAIL_ID = os.environ.get("GUARDRAIL_ID")
 GUARDRAIL_VERSION = os.environ.get("GUARDRAIL_VERSION", "DRAFT")
 
