@@ -105,3 +105,35 @@ python -u <フォルダ名>/<ファイル名>.py
 - [Strands Agents SDK (GitHub)](https://github.com/strands-agents/sdk-python)
 - [strands-agents (PyPI)](https://pypi.org/project/strands-agents/)
 - [strands-agents-tools (GitHub)](https://github.com/strands-agents/tools)
+
+---
+
+## CloudShell で試す場合
+
+1. インストラクターのガイドに基づき、AWS マネジメントコンソールを開きます。
+1. ページ左下にある「CloudShell」のリンクをクリックします。
+1. リポジトリをクローンして、移動します。
+    ```
+    git clone https://github.com/tetsuo-nobe/StrandsAgentsBasic.git
+    ```
+
+    ```
+    cd StrandsAgentsBasic
+    ```
+    
+1. 仮想環境を有効にして必要なパッケージをインストールします。
+    
+    ```bash
+    # 仮想環境の作成と有効化
+    python -m venv .venv
+    source .venv/bin/activate     
+
+    # パッケージのインストール
+    pip install -r requirements.txt
+    ```
+1. GitHub のページをみて、実行するサンプルのコードを確認します。
+1. CloudShell からサンプルを実行します。(下記は例)
+
+    ```bash
+    python -u basic/01_simple_agent.py
+    ```
