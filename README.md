@@ -54,6 +54,7 @@ python -u <フォルダ名>/<ファイル名>.py
 | `02_bedrock_model_config.py` | BedrockModel でモデル ID（Amazon Nova Lite）・リージョン・推論パラメータ（temperature, max_tokens 等）を明示的に指定 |
 | `03_system_prompt.py` | system_prompt でエージェントの役割・制約・回答スタイルを制御 |
 | `04_multimodal_input.py` | ContentBlock を使い、テキストと画像ファイル（cat.jpg）を組み合わせたマルチモーダル入力 |
+| `05_callback_handler_none.py` | callback_handler の有無によるストリーム出力の違いを確認。None 指定で出力を抑制 |
 
 ### tool/ — ツール活用
 
@@ -137,3 +138,5 @@ python -u <フォルダ名>/<ファイル名>.py
     ```bash
     python -u basic/01_simple_agent.py
     ```
+
+1. サンプルを試した後は、CloudShell を閉じます。
