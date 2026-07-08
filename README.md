@@ -139,4 +139,17 @@ python -u <フォルダ名>/<ファイル名>.py
     python -u basic/01_simple_agent.py
     ```
 
-1. サンプルを試した後は、CloudShell を閉じます。
+1. 仮想環境を終了する場合は、以下のコマンドを実行します。
+
+    ```bash
+    deactivate
+    ```
+
+1. 不要になったら、仮想環境とリポジトリを削除します。
+
+    ```bash
+    cd ~
+    rm -rf StrandsAgentsBasic
+    ```
+
+1. CloudShell を閉じます。
