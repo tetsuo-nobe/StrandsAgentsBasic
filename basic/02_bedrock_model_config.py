@@ -8,7 +8,7 @@ from strands.models.bedrock import BedrockModel
 
 # BedrockModel でモデルIDと推論パラメータを明示的に指定
 bedrock_model = BedrockModel(
-    model_id="us.anthropic.claude-sonnet-4-20250514-v1:0",
+    model_id="us.amazon.nova-lite-v1:0",
     region_name="us-east-1",
     temperature=0.5,
     max_tokens=1024,

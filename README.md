@@ -51,7 +51,9 @@ python -u <フォルダ名>/<ファイル名>.py
 | ファイル | 内容 |
 |---|---|
 | `01_simple_agent.py` | Agent オブジェクトだけを使う最低限のコード。デフォルトの Bedrock モデルで動作 |
-| `02_bedrock_model_config.py` | BedrockModel でモデル ID・リージョン・推論パラメータ（temperature, max_tokens 等）を明示的に指定 |
+| `02_bedrock_model_config.py` | BedrockModel でモデル ID（Amazon Nova Lite）・リージョン・推論パラメータ（temperature, max_tokens 等）を明示的に指定 |
+| `03_system_prompt.py` | system_prompt でエージェントの役割・制約・回答スタイルを制御 |
+| `04_multimodal_input.py` | ContentBlock を使い、テキストと画像ファイル（cat.jpg）を組み合わせたマルチモーダル入力 |
 
 ### tool/ — ツール活用
 
