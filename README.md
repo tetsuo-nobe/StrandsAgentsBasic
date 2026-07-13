@@ -62,7 +62,7 @@ python -u <フォルダ名>/<ファイル名>.py
 | `01_builtin_tools.py` | `strands_tools` の `calculator`, `current_time` をツールとして使用 |
 | `02_custom_tool.py` | `@tool` デコレータで自作の Python 関数をツールとして定義・使用 |
 | `03_mcp_tool.py` | MCP サーバー（stdio トランスポート / ローカルプロセス）をツールとして使用。`uvx` が必要 |
-| `04_remote_mcp_tool.py` | リモート MCP サーバー（Streamable HTTP）をツールとして使用。Svelte 公式 MCP サーバーに接続 |
+| `04_remote_mcp_tool.py` | リモート MCP サーバー（Streamable HTTP）をツールとして使用。AWS Knowledge MCP Server に接続 |
 | `05_knowledge_base_retrieve.py` | Amazon Bedrock ナレッジベースから情報を検索する RAG エージェント。`retrieve` ツールを使用 |
 
 ### hooks/ — フック（ライフサイクルイベント）
