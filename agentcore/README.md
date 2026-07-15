@@ -8,6 +8,7 @@
 
 * **注意:** 手順上、US のリージョンを使用します。マネジメントコンソールで **オレゴン (us-west-2) リージョン** を選択します。
 
+---
 ### CloudShell の起動
 
 
@@ -15,24 +16,27 @@
 
 * 以後、CloudShell のターミナルにコマンドを貼り付けて実行していきます。
 
+---
 ### uv のインストール
 
 ```
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
+---
 ### Git リポジトリのクローン（もしまだの場合）
 
 ```
 git clone https://github.com/tetsuo-nobe/StrandsAgentsBasic.git
 ```
 
-### フォルダの移動
+* フォルダの移動
 
 ```
 cd  ~/StrandsAgentsBasic/agentcore
 ```
 
+---
 ### AgentCore CLI のインストール
 
 > [!NOTE]
@@ -47,6 +51,7 @@ export PATH=/tmp/npm-global/bin:$PATH
 rm -rf ~/.npm ~/.cache /tmp/npm-cache
 ```
 
+---
 ### AgentCore プロジェクトの作成
 
 ```
@@ -72,6 +77,7 @@ agentcore create
 cd handson
 ```
 
+---
 ### main.py の編集
 
 * GitHub リポジトリで main.py の内容を確認します。
@@ -82,7 +88,7 @@ cd handson
 ```
 cp ~/StrandsAgentsBasic/agentcore/main.py  ~/StrandsAgentsBasic/agentcore/handson/app/MyAgent/main.py
 ```
-
+---
 
 ### AgentCore ラインタイムへのデプロイ
 
@@ -97,6 +103,7 @@ pwd
 ```
 agentcore deploy
 ```
+---
 
 ### AgentCore ラインタイムの ARN の取得
 
@@ -112,7 +119,7 @@ Agents
   URL: https://bedrock-agentcore.us-east-1.amazonaws.com/runtimes/arn%3Aaws%3Abedrock-agentcore%3Aus-east-1%3A123456789012%3Aruntime%2Fhandson_MyAgent-suHGqe9XiS/invocations
 ```
  
-
+---
 ### デプロイしたエージェントの呼び出し
 
 ```
