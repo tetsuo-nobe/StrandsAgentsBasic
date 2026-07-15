@@ -15,6 +15,18 @@
 
 * 以後、CloudShell のターミナルにコマンドを貼り付けて実行していきます。
 
+### Git リポジトリのクローン（もしまだの場合）
+
+```
+git clone https://github.com/tetsuo-nobe/StrandsAgentsBasic.git
+```
+
+### フォルダの移動
+
+```
+cd  ~/StrandsAgentsBasic/agentcore
+```
+
 ### AgentCore CLI のインストール
 
 ```
