@@ -36,11 +36,15 @@ cd  ~/StrandsAgentsBasic/agentcore
 ### AgentCore CLI のインストール
 
 > [!NOTE]
-> CloudShell では容量が限られているためインストール先やキャッシュにあえて /tmp を指定しています。 
-
+> CloudShell では容量が限られているためインストール先やキャッシュにあえて /tmp を指定しています。 またインストール後に不要なファイルを削除します。
+ 
 ```
 npm install -g @aws/agentcore@latest --prefix /tmp/npm-global --cache /tmp/npm-cache
 export PATH=/tmp/npm-global/bin:$PATH
+```
+
+```
+rm -rf ~/.npm ~/.cache /tmp/npm-cache
 ```
 
 ### AgentCore プロジェクトの作成
