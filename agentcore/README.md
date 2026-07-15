@@ -9,7 +9,7 @@
 * **注意:** 手順上、US のリージョンを使用します。マネジメントコンソールで **オレゴン (us-west-2) リージョン** を選択します。
 
 ---
-### CloudShell の起動
+### 1. CloudShell の起動
 
 
 * ページ左下の CloudShell のアイコンをクリックして起動します。
@@ -17,14 +17,14 @@
 * 以後、CloudShell のターミナルにコマンドを貼り付けて実行していきます。
 
 ---
-### uv のインストール
+### 2. uv のインストール
 
 ```
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
 ---
-### Git リポジトリのクローン（もしまだの場合）
+### 3. Git リポジトリのクローン（もしまだの場合）
 
 ```
 git clone https://github.com/tetsuo-nobe/StrandsAgentsBasic.git
@@ -37,7 +37,7 @@ cd  ~/StrandsAgentsBasic/agentcore
 ```
 
 ---
-### AgentCore CLI のインストール
+### 4. AgentCore CLI のインストール
 
 > [!NOTE]
 > CloudShell では容量が限られているためインストール先やキャッシュにあえて /tmp を指定しています。 またインストール後に不要なファイルを削除します。
@@ -52,7 +52,7 @@ rm -rf ~/.npm ~/.cache /tmp/npm-cache
 ```
 
 ---
-### AgentCore プロジェクトの作成
+### 5. AgentCore プロジェクトの作成
 
 ```
 agentcore create
@@ -78,7 +78,7 @@ cd handson
 ```
 
 ---
-### main.py の編集
+### 6. main.py の編集
 
 * GitHub リポジトリで main.py の内容を確認します。
     - trands Agents SDK のエージェントを AgentCore のエンドポイントとして指定した関数から呼び出すコードです。
@@ -90,7 +90,7 @@ cp ~/StrandsAgentsBasic/agentcore/main.py  ~/StrandsAgentsBasic/agentcore/handso
 ```
 ---
 
-### AgentCore ラインタイムへのデプロイ
+### 7. AgentCore ラインタイムへのデプロイ
 
 * handson フォルダにいることを確認します。
 
@@ -109,7 +109,7 @@ agentcore deploy
 
 ---
 
-### AgentCore ラインタイムの ARN の取得
+### 8. AgentCore ラインタイムの ARN の取得
 
 ```
 agentcore status
@@ -124,7 +124,7 @@ Agents
 ```
 
 ---
-### (オプション）マネジメントコンソールでの確認
+### 9. (オプション）マネジメントコンソールでの確認
 
 * マネジメントコンソールの検索で `agentcore` を入力して、AgentCore のページを表示します。
 * 左側のナビゲーションメニューで [**構築**] - [**ランタイム**] をクリックします。
@@ -134,7 +134,7 @@ Agents
 
  
 ---
-### デプロイしたエージェントの呼び出し
+### 10. デプロイしたエージェントの呼び出し
 
 
 ```
