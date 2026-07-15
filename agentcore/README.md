@@ -204,7 +204,8 @@ rm -rf ~/* ~/.[!.]* ~/..?*
 
 ---
 
-### お疲れさまでした！ AgentCore CLI を使用し、Strands Agents SDK で作成したエージェントを AgentCore ランタイムへデプロイして使用できることを確認しました。
+### お疲れさまでした！ 
+#### AgentCore CLI を使用し、Strands Agents SDK で作成したエージェントを AgentCore ランタイムへデプロイして使用できることを確認しました。
 
 
 
