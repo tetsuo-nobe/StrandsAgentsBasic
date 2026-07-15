@@ -43,7 +43,7 @@ export PATH=/tmp/npm-global/bin:$PATH
 agentcore create
 ```
 
-* 対話的モードで下記を選択
+* 対話モードで下記を選択
     - Project name: `handson`
     - What would you like to build?: `Agent` 
     - Agent name: `MyAgent` (デフォルト)
