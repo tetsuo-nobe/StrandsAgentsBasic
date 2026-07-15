@@ -140,7 +140,7 @@ pwd
 * エージェントを呼び出すコード (invoke.py) の用意
 
 ```
-cp ../invoke.py  ./invoke.py
+cp ~/StrandsAgentsBasic/agentcore/invoke.py  ~/StrandsAgentsBasic/agentcore/handson/invoke.py
 ```
 
 * invoke.py の編集
