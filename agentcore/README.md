@@ -122,6 +122,16 @@ Agents
   MyAgent: Deployed - Runtime: READY (arn:aws:bedrock-agentcore:us-east-1:123456789012:runtime/handson_MyAgent-suHGqe9XiS)
   URL: https://bedrock-agentcore.us-east-1.amazonaws.com/runtimes/arn%3Aaws%3Abedrock-agentcore%3Aus-east-1%3A123456789012%3Aruntime%2Fhandson_MyAgent-suHGqe9XiS/invocations
 ```
+
+---
+### (オプション）マネジメントコンソールでの確認
+
+* マネジメントコンソールの検索で `agentcore` を入力して、AgentCore のページを表示します。
+* 左側のナビゲーションメニューで [**構築**] - [**ランタイム**] をクリックします。
+* [**ランタイムリソース**] に [**handson_MyAgent**] が表示され、[**ステータス**] が [**準備完了**] になっていることを確認します。
+
+<img width="1417" height="809" alt="image" src="https://github.com/user-attachments/assets/e70ec4c9-2e87-452b-af4e-3ab208ea14bd" />
+
  
 ---
 ### デプロイしたエージェントの呼び出し
