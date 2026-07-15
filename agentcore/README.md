@@ -29,8 +29,12 @@ cd  ~/StrandsAgentsBasic/agentcore
 
 ### AgentCore CLI のインストール
 
+> [!NOTE]
+> CloudShell では容量が限られているためインストール先やキャッシュにあえて /tmp を指定しています。 
+
 ```
-npm install -g @aws/agentcore@latest
+npm install -g @aws/agentcore@latest --prefix /tmp/npm-global --cache /tmp/npm-cache
+export PATH=/tmp/npm-global/bin:$PATH
 ```
 
 ### AgentCore プロジェクトの作成
@@ -63,16 +67,10 @@ cd handson
 * GitHub リポジトリで main.py の内容を確認します。
     - trands Agents SDK のエージェントを AgentCore のエンドポイントとして指定した関数から呼び出すコードです。
 
-* handson フォルダにいることを確認して下さい。
-
-```
-pwd
-```
-
 * AgentCore プロジェクトで作成された main.py に上書きコピーします。
 
 ```
-cp ../main.py  ./app/MyAgent/main.py
+cp ~/StrandsAgentsBasic/agentcore/main.py  ~/StrandsAgentsBasic/agentcore/handson/app/MyAgent/main.py
 ```
 
 
