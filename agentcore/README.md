@@ -103,6 +103,10 @@ pwd
 ```
 agentcore deploy
 ```
+
+> [!NOTE]
+> 途中、CDK の bootstrap 実行の確認が求められたら、Enter キーを押してください。
+
 ---
 
 ### AgentCore ラインタイムの ARN の取得
