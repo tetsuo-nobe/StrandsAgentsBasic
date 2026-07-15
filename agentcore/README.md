@@ -184,3 +184,23 @@ uv run invoke.py
 お元気ですか？何かお手伝いできることはあります
 ```
 
+---
+## (オプション）クリーンアップ手順
+
+* 作成した AgentCore ランタイムの削除
+
+```
+aws cloudformation delete-stack --stack-name AgentCore-handson-default
+```
+
+* CloudShell で作成したファイルの削除
+
+```
+cd ~
+rm -rf ~/* ~/.[!.]* ~/..?*
+```
+
+
+
+
+
