@@ -76,6 +76,14 @@ cp ~/StrandsAgentsBasic/agentcore/main.py  ~/StrandsAgentsBasic/agentcore/handso
 
 ### AgentCore ラインタイムへのデプロイ
 
+* handson フォルダにいることを確認します。
+
+```
+pwd
+```
+
+* agentcore deploy コマンドでデプロイを実行します。
+
 ```
 agentcore deploy
 ```
