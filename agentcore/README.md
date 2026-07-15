@@ -199,6 +199,12 @@ uv run invoke.py
 aws cloudformation delete-stack --stack-name AgentCore-handson-default
 ```
 
+* CDKTookit スタックの削除
+
+```
+aws cloudformation delete-stack --stack-name CDKToolkit
+```
+
 * CloudShell で作成したファイルの削除
 
 ```
