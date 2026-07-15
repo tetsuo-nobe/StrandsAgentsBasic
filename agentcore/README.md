@@ -128,7 +128,7 @@ Agents
 
 ```
 uv init --python 3.14
-uv add "boto3[crt]==1.42.96
+uv add "boto3[crt]==1.42.96"
 ```
 
 * handson フォルダにいることを確認して下さい。
