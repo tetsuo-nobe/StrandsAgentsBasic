@@ -136,6 +136,12 @@ Agents
 ---
 ### デプロイしたエージェントの呼び出し
 
+
+```
+rm -rf ~/.npm ~/.cache /tmp/npm-cache
+```
+
+
 ```
 uv init --python 3.14
 uv add "boto3[crt]==1.42.96"
