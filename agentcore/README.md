@@ -44,16 +44,16 @@ agentcore create
 ```
 
 * 対話モードで下記を選択
-    - Project name: `handson`
-    - What would you like to build?: `Agent` 
-    - Agent name: `MyAgent` (デフォルト)
-    - Select agent type: `Create new agent` 
-    - Language: `Python` 
-    - Build: `Direct Code Deploy`
-    - Protocol: `HTTP`
-    - Framework: `Strands Agents SDK`
-    - Model: `us.anthropic.claude-sonnet-4-5-20250514-v1:0`
-    - Memory: `None`
+    - Project name: `handson` を **入力**
+    - What would you like to build?: `Agent` を選択 
+    - Agent name: `MyAgent` (デフォルト) を選択
+    - Select agent type: `Create new agent` を選択
+    - Language: `Python` を選択
+    - Build: `Direct Code Deploy` を選択
+    - Protocol: `HTTP` を選択
+    - Framework: `Strands Agents SDK` を選択
+    - Model: `us.anthropic.claude-sonnet-4-5-20250514-v1:0` を選択
+    - Memory: `None` を選択
     - Customiza advanced settings: (何も選択せず Enter)
     - 最後にもう一度 Enter
 
