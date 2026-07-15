@@ -15,6 +15,13 @@
 
 * 以後、CloudShell のターミナルにコマンドを貼り付けて実行していきます。
 
+### uv のインストール
+
+```
+curl -LsSf https://astral.sh/uv/install.sh | sh
+source $HOME/.local/bin/env
+```
+
 ### Git リポジトリのクローン（もしまだの場合）
 
 ```
