@@ -153,6 +153,13 @@ ARN=メモしたARN
 sed -i "s|YOUR_AGENT_RUNTIME_ARN|$ARN|g" invoke.py
 ```
 
+* ARN が正しく設定されていることを確認します。
+
+```
+cat invoke.py
+```
+ 
+
 * 呼び出し実行
 
 ```
