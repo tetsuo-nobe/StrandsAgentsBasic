@@ -196,8 +196,17 @@ uv run invoke.py
 * 作成した AgentCore ランタイムの削除
 
 ```
-aws cloudformation delete-stack --stack-name AgentCore-handson-default
+agentcore remove
 ```
+
+    - `Agent` を選択
+    - `MyAgent` を選択
+    - 確認の Enter キーを押す
+
+```
+agentcore deploy
+```
+
 
 * CDKTookit スタックの削除
 
