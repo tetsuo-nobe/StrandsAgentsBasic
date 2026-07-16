@@ -199,9 +199,9 @@ uv run invoke.py
 agentcore remove
 ```
 
-    - `Agent` を選択
-    - `MyAgent` を選択
-    - 確認の Enter キーを押す
+   - `Agent` を選択
+   - `MyAgent` を選択
+   - 確認の Enter キーを押す
 
 ```
 agentcore deploy
