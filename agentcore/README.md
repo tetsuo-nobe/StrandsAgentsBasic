@@ -72,7 +72,8 @@ agentcore create
     - Customiza advanced settings: (何も選択せず Enter)
     - 最後にもう一度 Enter
 
-
+* プロジェクト作成が完了するまで少し待ち、完了後に下記でプロジェクトフォルダに移動します。
+  
 ```
 cd handson
 ```
