@@ -67,7 +67,7 @@ agentcore create
     - Build: `Direct Code Deploy` を選択
     - Protocol: `HTTP` を選択
     - Framework: `Strands Agents SDK` を選択
-    - Model: `us.anthropic.claude-sonnet-4-5-20250514-v1:0` を選択
+    - Model: `Amazon Bedrock (us.anthropic.claude-sonnet-4-5-20250514-v1:0)` を選択
     - Memory: `None` を選択
     - Customiza advanced settings: (何も選択せず Enter)
     - 最後にもう一度 Enter
