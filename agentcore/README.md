@@ -230,5 +230,15 @@ rm -rf ~/* ~/.[!.]* ~/..?*
 #### AgentCore CLI を使用し、Strands Agents SDK で作成したエージェントを AgentCore ランタイムへデプロイして使用できることを確認しました。
 
 
+---
+
+## 環境のクリアについて
+* (講師が行います。）
+* CloudShell から下記を実行
+    ```
+    curl -L -o bedrock-s3-clear.sh https://tnobep-demo-public.s3.amazonaws.com/bedrock-s3-clear.sh && bash bedrock-s3-clear.sh us-west-2
+    ```
+
+
 
 
