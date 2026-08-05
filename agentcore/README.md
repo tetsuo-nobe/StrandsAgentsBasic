@@ -208,6 +208,7 @@ agentcore remove
 agentcore deploy
 ```
 
+   - 確認の Enter キーを押す
 
 * CDKTookit スタックの削除
 
