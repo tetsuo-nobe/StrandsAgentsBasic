@@ -120,14 +120,14 @@ cd  ~/StrandsAgentsBasic/agentcore
 ```
 
 ---
-#### 4-3. AgentCore CLI のインストール
+#### (オプション) 4-3. AgentCore CLI のインストール
 
- 
-```
-npm install -g @aws/agentcore@latest 
-export PATH=/tmp/npm-global/bin:$PATH
-```
+* 通常は 下記のコマンドで AgentCore CLI をインストールしますが、このワークの環境では EC2 インスタンスのユーザーデータですでにインストール済です。
 
+* 参考：AgentCore CLI のインストールコマンドは下記です。 **実行する必要はありません**
+      ```
+      npm install -g @aws/agentcore@latest 
+      ```
 
 ---
 #### 4-4. AgentCore プロジェクトの作成
