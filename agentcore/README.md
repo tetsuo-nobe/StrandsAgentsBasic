@@ -16,53 +16,83 @@
 ### 1. VPC とサブネットの情報を取得
 
 
-1. ページ左下の CloudShell のアイコンをクリックして起動します。
+1. ページ左下の CloudShell のアイコンをクリックして起動してホームディレクトリに移動します。
+
+   ```
+   cd ~
+   ```
 
 1. 下記のコマンドで、デフォルトの VPC の ID と Public サブネットの ID を表示します。
 
   ```
-  vpcId=$(aws ec2 describe-vpcs --filters "Name=isDefault,Values=true" --query "Vpcs[0].VpcId" --output text --region ap-northeast-1)
-  echo "Default VPC: $vpcId"
-  aws ec2 describe-subnets --filters "Name=vpc-id,Values=$vpcId" --query "Subnets[].{SubnetId:SubnetId,AZ:AvailabilityZone,CIDR:CidrBlock,Public:MapPublicIpOnLaunch}" --output table --region ap-northeast-1
-  
+export AWS_REGION=us-west-2
+
+# デフォルト VPC の ID を取得して環境変数へ
+export VPC_ID=$(aws ec2 describe-vpcs \
+  --filters "Name=isDefault,Values=true" \
+  --query "Vpcs[0].VpcId" --output text --region $AWS_REGION)
+
+# その VPC のパブリックサブネットを1つ取得して環境変数へ
+export SUBNET_ID=$(aws ec2 describe-subnets \
+  --filters "Name=vpc-id,Values=$VPC_ID" "Name=map-public-ip-on-launch,Values=true" \
+  --query "Subnets[0].SubnetId" --output text --region $AWS_REGION)
+
+echo "VPC_ID=$VPC_ID"
+echo "SUBNET_ID=$SUBNET_ID"
   ```
 
-1. VPC の ID と Public サブネットの ID (1つだけ）をメモしておきます。
 
 ---
-### 2. CloudFormation テンプレートのダウンロード
+### 2. CloudFormation で EC2 インスタンスを作成
 
 * 引き続き CloudShell を使用します。
 
-1. 下記のコマンドで、CloudFormation テンプレートをダウンロードします。
-    
-  ```
-  curl -O https://tnobep-work-public.s3.ap-northeast-1.amazonaws.com/agentcore_work/ec2-agentcore.yaml
-  ```
+1. 下記のコマンドで、CloudFormation スタックを作成します。
 
-1. ダウンロードを確認します。
+     ```
+    aws cloudformation create-stack \
+      --stack-name agentcore-ec2 \
+      --template-url https://tnobep-work-public.s3.ap-northeast-1.amazonaws.com/agentcore_work/ec2-agentcore.yaml \
+      --capabilities CAPABILITY_IAM \
+      --parameters ParameterKey=VpcId,ParameterValue=$VPC_ID ParameterKey=SubnetId,ParameterValue=$SUBNET_ID \
+      --region $AWS_REGION
+     ```
 
-  ```
-  cat ec2-agentcore.yaml
-  ```
+1. 下記のような出力を確認します。
 
+    ```
+    {
+        "StackId": "arn:aws:cloudformation:us-west-2:418295696229:stack/agentcore-ec2/bd5ade10-9a0c-11f1-9296-06611a0e8ebd",
+        "OperationId": "bd5c64b0-9a0c-11f1-9296-06611a0e8ebd"
+    }
+    ```
 
+1. CloudShell を閉じます。
 
-
-
----
-## CloudShell　を使う場合
-
----
-### 1. CloudShell の起動
-
-
-* ページ左下の CloudShell のアイコンをクリックして起動します。
-
-* 以後、CloudShell のターミナルにコマンドを貼り付けて実行していきます。
+1. CloudFormation のページを表示し、**agentcore-ec2** スタックのステータスが **CREATE_COMPLETE** になるまで待機します。
 
 ---
-### 2. uv のインストール
+### 3. EC2 インスタンスにセッションマネージャーでアクセス
+
+1. EC2 のページを表示します。
+
+1. 左側のメニューから「**インスタンス**」- 「**インスタンス**」をクリックします。
+
+1. **agentcore-workstation** というインスタンス名の左横のチェックボックスをチェックします。
+
+1. 「**接続**」をクリックします。
+
+1. 「**SSM セッションマネージャー**」をクリックして、「**接続**」をクリックします。
+
+1. ターミナルが表示されることを確認します。
+
+---
+### 4. AgentCore CLI でエージェントのデプロイ
+
+* 以後、SSM セッションマネージャーのターミナルにコマンドを貼り付けて実行していきます。
+
+---
+#### 4-1. uv のインストール
 
 ```
 cd ~
@@ -72,8 +102,12 @@ cd ~
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
+```
+source $HOME/.local/bin/env
+```
+
 ---
-### 3. Git リポジトリのクローン（もしまだの場合）
+#### 4-2. Git リポジトリのクローン
 
 ```
 git clone https://github.com/tetsuo-nobe/StrandsAgentsBasic.git
@@ -86,22 +120,21 @@ cd  ~/StrandsAgentsBasic/agentcore
 ```
 
 ---
-### 4. AgentCore CLI のインストール
+#### 4-3. AgentCore CLI のインストール
 
-> [!NOTE]
-> CloudShell では容量が限られているためインストール先やキャッシュにあえて /tmp を指定しています。 またインストール後に不要なファイルを削除します。
  
 ```
-npm install -g @aws/agentcore@latest --prefix /tmp/npm-global --cache /tmp/npm-cache
+npm install -g @aws/agentcore@latest 
 export PATH=/tmp/npm-global/bin:$PATH
 ```
 
-```
-rm -rf ~/.npm ~/.cache /tmp/npm-cache
-```
 
 ---
-### 5. AgentCore プロジェクトの作成
+#### 4-4. AgentCore プロジェクトの作成
+
+```
+aws configure set region us-west-2
+```
 
 ```
 agentcore create
@@ -128,10 +161,10 @@ cd handson
 ```
 
 ---
-### 6. main.py の編集
+#### 4-5. main.py の編集
 
 * GitHub リポジトリで main.py の内容を確認します。
-    - trands Agents SDK のエージェントを AgentCore のエンドポイントとして指定した関数から呼び出すコードです。
+    - Strands Agents SDK のエージェントを AgentCore のエンドポイントとして指定した関数から呼び出すコードです。
 
 * AgentCore プロジェクトで作成された main.py に上書きコピーします。
 
@@ -140,7 +173,7 @@ cp ~/StrandsAgentsBasic/agentcore/main.py  ~/StrandsAgentsBasic/agentcore/handso
 ```
 ---
 
-### 7. AgentCore ラインタイムへのデプロイ
+#### 4-6. AgentCore ラインタイムへのデプロイ
 
 * handson フォルダにいることを確認します。
 
@@ -159,7 +192,7 @@ agentcore deploy
 
 ---
 
-### 8. AgentCore ラインタイムの ARN の取得
+#### 4-7. AgentCore ラインタイムの ARN の取得
 
 ```
 agentcore status
@@ -174,7 +207,7 @@ Agents
 ```
 
 ---
-### 9. (オプション）マネジメントコンソールでの確認
+#### 4-8. (オプション）マネジメントコンソールでの確認
 
 * マネジメントコンソールの検索で `agentcore` を入力して、AgentCore のページを表示します。
 * 左側のナビゲーションメニューで [**構築**] - [**ランタイム**] をクリックします。
@@ -184,12 +217,7 @@ Agents
 
  
 ---
-### 10. デプロイしたエージェントの呼び出し
-
-
-```
-rm -rf ~/.npm ~/.cache /tmp/npm-cache
-```
+#### 4-9. デプロイしたエージェントの呼び出し
 
 
 ```
@@ -241,7 +269,7 @@ uv run invoke.py
 ```
 
 ---
-## クリーンアップ手順
+### クリーンアップ手順
 
 * 作成した AgentCore ランタイムの削除
 
