@@ -9,6 +9,51 @@
 * **注意:** 手順上、US のリージョンを使用します。マネジメントコンソールで **オレゴン (us-west-2) リージョン** を選択します。
 
 ---
+
+## EC2 インスタンスを使用する場合
+
+---
+### 1. VPC とサブネットの情報を取得
+
+
+1. ページ左下の CloudShell のアイコンをクリックして起動します。
+
+1. 下記のコマンドで、デフォルトの VPC の ID と Public サブネットの ID を表示します。
+
+  ```
+  vpcId=$(aws ec2 describe-vpcs --filters "Name=isDefault,Values=true" --query "Vpcs[0].VpcId" --output text --region ap-northeast-1)
+  echo "Default VPC: $vpcId"
+  aws ec2 describe-subnets --filters "Name=vpc-id,Values=$vpcId" --query "Subnets[].{SubnetId:SubnetId,AZ:AvailabilityZone,CIDR:CidrBlock,Public:MapPublicIpOnLaunch}" --output table --region ap-northeast-1
+  
+  ```
+
+1. VPC の ID と Public サブネットの ID (1つだけ）をメモしておきます。
+
+---
+### 2. CloudFormation テンプレートのダウンロード
+
+* 引き続き CloudShell を使用します。
+
+1. 下記のコマンドで、CloudFormation テンプレートをダウンロードします。
+    
+  ```
+  curl -O https://tnobep-work-public.s3.ap-northeast-1.amazonaws.com/agentcore_work/ec2-agentcore.yaml
+  ```
+
+1. ダウンロードを確認します。
+
+  ```
+  cat ec2-agentcore.yaml
+  ```
+
+
+
+
+
+---
+## CloudShell　を使う場合
+
+---
 ### 1. CloudShell の起動
 
 
