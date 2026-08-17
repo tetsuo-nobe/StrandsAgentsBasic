@@ -24,22 +24,22 @@
 
 1. 下記のコマンドで、デフォルトの VPC の ID と Public サブネットの ID を表示します。
 
-  ```
-export AWS_REGION=us-west-2
-
-# デフォルト VPC の ID を取得して環境変数へ
-export VPC_ID=$(aws ec2 describe-vpcs \
-  --filters "Name=isDefault,Values=true" \
-  --query "Vpcs[0].VpcId" --output text --region $AWS_REGION)
-
-# その VPC のパブリックサブネットを1つ取得して環境変数へ
-export SUBNET_ID=$(aws ec2 describe-subnets \
-  --filters "Name=vpc-id,Values=$VPC_ID" "Name=map-public-ip-on-launch,Values=true" \
-  --query "Subnets[0].SubnetId" --output text --region $AWS_REGION)
-
-echo "VPC_ID=$VPC_ID"
-echo "SUBNET_ID=$SUBNET_ID"
-  ```
+     ```
+   export AWS_REGION=us-west-2
+   
+   # デフォルト VPC の ID を取得して環境変数へ
+   export VPC_ID=$(aws ec2 describe-vpcs \
+     --filters "Name=isDefault,Values=true" \
+     --query "Vpcs[0].VpcId" --output text --region $AWS_REGION)
+   
+   # その VPC のパブリックサブネットを1つ取得して環境変数へ
+   export SUBNET_ID=$(aws ec2 describe-subnets \
+     --filters "Name=vpc-id,Values=$VPC_ID" "Name=map-public-ip-on-launch,Values=true" \
+     --query "Subnets[0].SubnetId" --output text --region $AWS_REGION)
+   
+   echo "VPC_ID=$VPC_ID"
+   echo "SUBNET_ID=$SUBNET_ID"
+     ```
 
 
 ---
