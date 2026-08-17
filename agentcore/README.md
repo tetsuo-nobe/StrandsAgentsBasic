@@ -1,5 +1,5 @@
 
-## Strands Agents のエージェントを AgentCore ランタイムへデプロイ
+# Strands Agents のエージェントを AgentCore ランタイムへデプロイ
 
 > [!NOTE]
 > このリポジトリのテーマとは少し違う内容ですが、Agentic AI Foundations トレーニングで Strands Agents SDK のワークに続いて実施する想定なので、このリポジトリに含めています。
