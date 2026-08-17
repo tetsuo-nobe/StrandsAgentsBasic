@@ -294,7 +294,7 @@ agentcore deploy
 aws cloudformation delete-stack --stack-name CDKToolkit
 ```
 
-* CloudShell で作成したファイルの削除
+* ファイルの削除
 
 ```
 cd ~
