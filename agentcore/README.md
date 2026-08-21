@@ -15,6 +15,10 @@
 ---
 ### 1. VPC とサブネットの情報を取得
 
+1. このワークでは、**AgentCore CLI を EC2 インスタンスにインストールして使用します。**
+  - まず EC2 インスタンスを配置する VPC のネットワークの情報を取得します。
+
+> CloudShell で AgentCore CLI を使わず、EC2 インスタンスを使用するのは、ストレージの容量を考慮したためです。CloudShell は容量が 1GB のため逼迫する可能性があります。
 
 1. ページ左下の CloudShell のアイコンをクリックして起動してホームディレクトリに移動します。
 
@@ -48,6 +52,7 @@
 * 引き続き CloudShell を使用します。
 
 1. 下記のコマンドで、CloudFormation スタックを作成します。
+    - これにより、EC2 インスタンスを作成できます。
 
      ```
     aws cloudformation create-stack \
@@ -94,6 +99,8 @@
 ---
 #### 4-1. uv のインストール
 
+* AgentCore CLI の使用には uv が必要になるためインストールします。
+
 ```
 cd ~
 ```
@@ -108,6 +115,8 @@ source $HOME/.local/bin/env
 
 ---
 #### 4-2. Git リポジトリのクローン
+
+* AgentCore CLI でデプロイするエージェントのコードや、デプロイした後に呼び出すコードを取得するため Git リポジトリをクローンします。
 
 ```
 git clone https://github.com/tetsuo-nobe/StrandsAgentsBasic.git
@@ -133,9 +142,16 @@ cd  ~/StrandsAgentsBasic/agentcore
 ---
 #### 4-4. AgentCore プロジェクトの作成
 
+* AgentCore CLI を使用する前に、使用するリージョンを設定します。
+
 ```
 aws configure set region us-west-2
 ```
+
+* いよいよ AgentCore CLI を使用します。
+* まずは AgentCore Runtime でエージェントをデプロイするためのリソースを格納したプロジェクトフォルダを作成します。
+* agentcore create コマンドを実行し、フォルダ名や、作成するリソース、デプロイ方法、使用する SDK、Memory の使用有無などを対話的に応答していきます。
+
 
 ```
 agentcore create
@@ -165,7 +181,8 @@ cd handson
 #### 4-5. main.py の編集
 
 * GitHub リポジトリで main.py の内容を確認します。
-    - Strands Agents SDK のエージェントを AgentCore のエンドポイントとして指定した関数から呼び出すコードです。
+    - この　main.py がデプロイするエージェントのコードになります。
+    - このコードでは、AgentCore のエンドポイントとして指定した関数から Strands Agents SDK のエージェントを呼び出しています。
 
 * AgentCore プロジェクトで作成された main.py に上書きコピーします。
 
@@ -174,8 +191,9 @@ cp ~/StrandsAgentsBasic/agentcore/main.py  ~/StrandsAgentsBasic/agentcore/handso
 ```
 ---
 
-#### 4-6. AgentCore ラインタイムへのデプロイ
+#### 4-6. AgentCore Runtime へのデプロイ
 
+* デプロイするエージェントが完成したので、AgentCore Runtime へデプロイします。
 * handson フォルダにいることを確認します。
 
 ```
@@ -192,23 +210,7 @@ agentcore deploy
 > 途中、CDK の bootstrap 実行の確認が求められたら、Enter キーを押してください。
 
 ---
-
-#### 4-7. AgentCore ラインタイムの ARN の取得
-
-```
-agentcore status
-```
-
-下記のような出力の中で ARN の値をメモしておきます。
-
-```
-Agents
-  MyAgent: Deployed - Runtime: READY (arn:aws:bedrock-agentcore:us-west-2:123456789012:runtime/handson_MyAgent-suHGqe9XiS)
-  URL: https://bedrock-agentcore.us-west-2.amazonaws.com/runtimes/arn%3Aaws%3Abedrock-agentcore%3Aus-west-2%3A123456789012%3Aruntime%2Fhandson_MyAgent-suHGqe9XiS/invocations
-```
-
----
-#### 4-8. (オプション）マネジメントコンソールでの確認
+#### 4-7. (オプション）マネジメントコンソールでのデプロイの確認
 
 * マネジメントコンソールの検索で `agentcore` を入力して、AgentCore のページを表示します。
 * 左側のナビゲーションメニューで [**構築**] - [**ランタイム**] をクリックします。
@@ -216,10 +218,31 @@ Agents
 
 <img width="1417" height="809" alt="image" src="https://github.com/user-attachments/assets/e70ec4c9-2e87-452b-af4e-3ab208ea14bd" />
 
- 
+
+---
+
+#### 4-8. AgentCore ラインタイムの ARN の取得
+
+* 次にデプロイしたエージェントを呼び出すためには、エージェントの Amazon Resource Name (ARN) が必要になるため、次のコマンドで取得します。
+
+```
+agentcore status
+```
+
+* 下記のような出力の中で ARN の値をメモしておきます。
+
+```
+Agents
+  MyAgent: Deployed - Runtime: READY (arn:aws:bedrock-agentcore:us-west-2:123456789012:runtime/handson_MyAgent-suHGqe9XiS)
+  URL: https://bedrock-agentcore.us-west-2.amazonaws.com/runtimes/arn%3Aaws%3Abedrock-agentcore%3Aus-west-2%3A123456789012%3Aruntime%2Fhandson_MyAgent-suHGqe9XiS/invocations
+```
+
+
 ---
 #### 4-9. デプロイしたエージェントの呼び出し
 
+* エージェントを呼び出すコードを用意します。
+* 下記のコマンドで、uv で実行するための準備を行います。
 
 ```
 uv init --python 3.14
@@ -232,13 +255,13 @@ uv add "boto3[crt]==1.42.96"
 pwd
 ```
 
-* エージェントを呼び出すコード (invoke.py) の用意
+* エージェントを呼び出すコード (invoke.py) をリポジトリからコピーします。
 
 ```
 cp ~/StrandsAgentsBasic/agentcore/invoke.py  ~/StrandsAgentsBasic/agentcore/handson/invoke.py
 ```
 
-* invoke.py の編集
+* invoke.py を編集して、デプロイしたエージェントの ARN をコードに設定します。
 
 ```
 ARN=メモしたARN
@@ -255,7 +278,7 @@ cat invoke.py
 ```
  
 
-* 呼び出し実行
+* 呼び出しを実行します。
 
 ```
 uv run invoke.py
@@ -269,10 +292,13 @@ uv run invoke.py
 お元気ですか？何かお手伝いできることはあります
 ```
 
+### お疲れさまでした！ 
+#### AgentCore CLI を使用し、Strands Agents SDK で作成したエージェントを AgentCore ランタイムへデプロイして呼び出すことができました。
+
 ---
 ### クリーンアップ手順
 
-* 作成した AgentCore ランタイムの削除
+* 作成した AgentCore ランタイムを削除削除する場合は、次の手順を実行します。
 
 ```
 agentcore remove
@@ -304,9 +330,6 @@ rm -rf ~/* ~/.[!.]* ~/..?*
 * SSM セッションマネージャーを閉じ、マネジメントコンソールからサインアウトします。
 
 ---
-
-### お疲れさまでした！ 
-#### AgentCore CLI を使用し、Strands Agents SDK で作成したエージェントを AgentCore ランタイムへデプロイして使用できることを確認しました。
 
 
 ---
