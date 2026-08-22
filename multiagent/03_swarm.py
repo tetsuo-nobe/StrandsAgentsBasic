@@ -66,7 +66,7 @@ swarm = Swarm(
 )
 
 if __name__ == "__main__":
-    result = swarm("リモートワークが生産性に与える影響")
+    result = swarm("観葉植物を室内に置くこと")
 
     print("\n--- ハンドオフの履歴（誰がどの順で担当したか）---")
     print([node.node_id for node in result.node_history])

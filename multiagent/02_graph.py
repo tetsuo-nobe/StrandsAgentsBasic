@@ -59,7 +59,7 @@ graph = builder.build()
 
 if __name__ == "__main__":
     # タスクは entry point（positive / negative）に渡され、出力が writer へ自動伝播する
-    result = graph("リモートワークが生産性に与える影響")
+    result = graph("観葉植物を室内に置くこと")
 
     print("\n--- 実行順序 ---")
     print([node.node_id for node in result.execution_order])

@@ -59,4 +59,4 @@ def run_workflow(topic: str) -> str:
 
 
 if __name__ == "__main__":
-    run_workflow("リモートワークが生産性に与える影響")
+    run_workflow("観葉植物を室内に置くこと")
