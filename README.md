@@ -40,7 +40,8 @@ python -u <フォルダ名>/<ファイル名>.py
 ├── guardrail/              # ガードレール（入出力制御）
 ├── stream/                 # ストリーミング出力
 ├── session/                # セッション（会話履歴）管理・永続化
-└── observability/          # ログ・メトリクス取得
+├── observability/          # ログ・メトリクス取得
+└── multiagent/             # マルチエージェント（Workflow / Graph / Swarm）
 ```
 
 ## サンプル一覧
@@ -99,9 +100,20 @@ python -u <フォルダ名>/<ファイル名>.py
 |---|---|
 | `01_debug_logging.py` | `logging` モジュールで Strands のデバッグログを有効化し、内部動作やメトリクスを確認 |
 
+### multiagent/ — マルチエージェント
+
+複数のエージェントを連携させる3パターンのサンプルです。同じ題材（調査 → 分析 → まとめ）を3通りで実装し、違いを比較できます。詳細は [`multiagent/README.md`](multiagent/README.md) を参照してください。
+
+| ファイル | 内容 |
+|---|---|
+| `01_workflow.py` | 【Workflow】開発者がコードで実行順序を固定するシーケンシャルワークフロー。各出力を手動で次の入力に渡す |
+| `02_graph.py` | 【Graph】`GraphBuilder` でノードとエッジ（依存関係）を定義。依存のないノードは並列実行され、出力はエッジに沿って自動伝播 |
+| `03_swarm.py` | 【Swarm】エージェントのプールを渡すだけ。次に動くエージェントは各自が自律的に判断（ハンドオフ）する |
+
 ## 参考リンク
 
 - [Strands Agents SDK ドキュメント](https://strandsagents.com/)
+- [Multi-agent Patterns（Workflow / Graph / Swarm の違い）](https://strandsagents.com/docs/user-guide/concepts/multi-agent/multi-agent-patterns/)
 - [Strands Agents SDK (GitHub)](https://github.com/strands-agents/sdk-python)
 - [strands-agents (PyPI)](https://pypi.org/project/strands-agents/)
 - [strands-agents-tools (GitHub)](https://github.com/strands-agents/tools)
