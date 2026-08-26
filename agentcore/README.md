@@ -282,7 +282,7 @@ sed -i "s|YOUR_AGENT_RUNTIME_ARN|$ARN|g" invoke.py
 ```
 
 * ARN が正しく設定されていることを確認します。
-
+    - `# ランタイム ARN を記載` というコメントがある行で、`agentRuntimeArn=` に ARN の値が設定されているか確認します。
 ```
 cat invoke.py
 ```
