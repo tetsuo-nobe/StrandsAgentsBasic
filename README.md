@@ -151,6 +151,7 @@ python -u <フォルダ名>/<ファイル名>.py
     ```bash
     python -u basic/01_simple_agent.py
     ```
+* **Model id: global.anthropic.claude-sonnet-4-6 に対する AccessDeniedException が出た場合は、30秒ほど待って再実行してみてください。**
 
 1. 仮想環境を終了する場合は、以下のコマンドを実行します。
 
