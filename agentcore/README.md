@@ -239,12 +239,13 @@ agentcore status
 ```
 
 * 下記のような出力の中で ARN の値をメモしておきます。
-
+    - 下記の例だと、**arn:aws:bedrock-agentcore:us-west-2:123456789012:runtime/handson_MyAgent-suHGqe9XiS**　が ARN の値になります。
 ```
 Agents
   MyAgent: Deployed - Runtime: READY (arn:aws:bedrock-agentcore:us-west-2:123456789012:runtime/handson_MyAgent-suHGqe9XiS)
   URL: https://bedrock-agentcore.us-west-2.amazonaws.com/runtimes/arn%3Aaws%3Abedrock-agentcore%3Aus-west-2%3A123456789012%3Aruntime%2Fhandson_MyAgent-suHGqe9XiS/invocations
 ```
+
 
 
 ---
