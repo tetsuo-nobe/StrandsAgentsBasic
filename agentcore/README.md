@@ -232,7 +232,7 @@ agentcore deploy
 
 #### 4-8. AgentCore ラインタイムの ARN の取得
 
-* 次にデプロイしたエージェントを呼び出すためには、エージェントの Amazon Resource Name (ARN) が必要になるため、次のコマンドで取得します。
+* デプロイしたエージェントを呼び出すためには、エージェントの Amazon Resource Name (ARN) が必要になるため、次のコマンドで取得します。
 
 ```
 agentcore status
