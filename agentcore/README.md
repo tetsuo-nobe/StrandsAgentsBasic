@@ -306,6 +306,9 @@ uv run invoke.py
 #### AgentCore CLI を使用し、Strands Agents SDK で作成したエージェントを AgentCore ランタイムへデプロイして呼び出すことができました。
 
 ---
+
+### （以下はオプションです。）
+
 ### クリーンアップ手順
 
 * 作成した AgentCore ランタイムを削除する場合は、次の手順を実行します。
@@ -343,7 +346,7 @@ rm -rf ~/* ~/.[!.]* ~/..?*
 ---
 
 ## 環境のクリアについて
-* (講師が行います。）
+* (**講師が行います。**）
 * CloudShell から下記を実行
     ```
     curl -L -o bedrock-s3-clear.sh https://tnobep-demo-public.s3.amazonaws.com/bedrock-s3-clear.sh && bash bedrock-s3-clear.sh us-west-2
