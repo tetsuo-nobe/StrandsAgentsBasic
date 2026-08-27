@@ -308,7 +308,7 @@ uv run invoke.py
 ---
 ### クリーンアップ手順
 
-* 作成した AgentCore ランタイムを削除削除する場合は、次の手順を実行します。
+* 作成した AgentCore ランタイムを削除する場合は、次の手順を実行します。
 
 ```
 agentcore remove
