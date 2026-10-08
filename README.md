@@ -39,7 +39,10 @@ python -u <フォルダ名>/<ファイル名>.py
 ├── hooks/                  # フック（ライフサイクルイベント）
 ├── guardrail/              # ガードレール（入出力制御）
 ├── stream/                 # ストリーミング出力
+├── structured_output/      # 構造化出力（型安全なレスポンス）
 ├── session/                # セッション（会話履歴）管理・永続化
+├── conversation_management/ # 会話履歴の管理戦略（トークン上限対策）
+├── error_handling/         # エラーハンドリングとフォールバック
 ├── observability/          # ログ・メトリクス取得
 └── multiagent/             # マルチエージェント（Workflow / Graph / Swarm）
 ```
@@ -87,12 +90,33 @@ python -u <フォルダ名>/<ファイル名>.py
 | `01_callback_handler.py` | `callback_handler` でテキスト生成・ツール使用イベントをリアルタイム処理 |
 | `02_async_stream.py` | `stream_async` による非同期ストリーミング。FastAPI 等との統合に適した方式 |
 
+### structured_output/ — 構造化出力
+
+| ファイル | 内容 |
+|---|---|
+| `01_structured_output.py` | 呼び出し時に `structured_output_model`（Pydantic モデル）を渡し、LLM の出力を型付きオブジェクトとして受け取る。問い合わせメールから氏名・会社名・金額・希望日などを抽出。結果は `AgentResult.structured_output` から取得 |
+
 ### session/ — セッション管理
 
 | ファイル | 内容 |
 |---|---|
 | `01_conversation_session.py` | 同一 Agent インスタンスを使い回すことで会話履歴を保持。`agent.messages` で履歴を確認 |
 | `02_file_session_manager.py` | `FileSessionManager` で会話履歴をファイルに永続化。プログラム再起動後もセッションを復元 |
+
+### conversation_management/ — 会話履歴の管理戦略
+
+会話が長くなり履歴がモデルのコンテキスト上限（トークン上限）を超えないよう、`ConversationManager` で履歴を自動的に整理する仕組みのサンプルです。`session/`（履歴の保持・永続化）とは目的が異なり、こちらは「履歴を上限内に抑える」ための戦略を扱います。
+
+| ファイル | 内容 |
+|---|---|
+| `01_sliding_window.py` | 【スライディングウィンドウ】`SlidingWindowConversationManager` で直近の固定件数だけを残し、古いメッセージは捨てる方式（デフォルトの方式）。古い発言が押し出されて忘れられる様子を確認 |
+| `02_summarizing.py` | 【要約】`SummarizingConversationManager` で古いメッセージを捨てずに LLM で要約して1件に置き換える方式。削減後も過去の要点が文脈に残る様子を確認 |
+
+### error_handling/ — エラーハンドリング
+
+| ファイル | 内容 |
+|---|---|
+| `01_error_handling.py` | `ModelThrottledException`・`ContextWindowOverflowException`・`ClientError`（権限／無効なモデルID 等）を種類ごとに捕捉し、ユーザー向けメッセージを出し分ける。主モデルの失敗時にフォールバックモデルへ切り替えて再試行するパターンも実演 |
 
 ### observability/ — 可観測性
 
@@ -114,6 +138,8 @@ python -u <フォルダ名>/<ファイル名>.py
 ## 参考リンク
 
 - [Strands Agents SDK ドキュメント](https://strandsagents.com/)
+- [Structured Output（構造化出力）](https://strandsagents.com/docs/user-guide/sdk/agents/structured-output/)
+- [Conversation Management（会話履歴の管理）](https://strandsagents.com/docs/user-guide/sdk/agents/conversation-management/)
 - [Multi-agent Patterns（Workflow / Graph / Swarm の違い）](https://strandsagents.com/docs/user-guide/concepts/multi-agent/multi-agent-patterns/)
 - [Strands Agents SDK (GitHub)](https://github.com/strands-agents/sdk-python)
 - [strands-agents (PyPI)](https://pypi.org/project/strands-agents/)
