@@ -9,9 +9,23 @@ tool/04_remote_mcp_tool.py
   - AWS Knowledge MCP Server（認証不要・レート制限あり）
   - AWS ドキュメント検索、リージョン情報、CDK/CloudFormation ガイダンス等を提供
   - 参考: https://awslabs.github.io/mcp/servers/aws-knowledge-mcp-server
+
+注意（mcp パッケージのバージョン差について）:
+  Streamable HTTP クライアントの関数名は mcp のバージョンで異なる。
+  - mcp 1.x: streamablehttp_client（連結表記）
+  - mcp 2.x: streamable_http_client（アンダースコア区切り。旧名は削除）
+  requirements.txt では mcp を 1.x に固定しているが、環境によっては 2.x が
+  入っていることもあるため、下記のように両方の名前へフォールバックして
+  どちらのバージョンでも動くようにしている。
 """
 
-from mcp.client.streamable_http import streamablehttp_client
+try:
+    # mcp 1.x 系の関数名
+    from mcp.client.streamable_http import streamablehttp_client
+except ImportError:
+    # mcp 2.x 系では streamable_http_client に改名されている
+    from mcp.client.streamable_http import streamable_http_client as streamablehttp_client
+
 from strands import Agent
 from strands.tools.mcp import MCPClient
 
