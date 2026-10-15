@@ -152,6 +152,11 @@ python -u <フォルダ名>/<ファイル名>.py
 1. インストラクターのガイドに基づき、AWS マネジメントコンソールを開きます。
 1. **オレゴン (米国)**　リージョンを選択します。
 1. ページ左下にある「CloudShell」のリンクをクリックします。
+1. 既存のリポジトリが残っている場合を考慮して削除コマンドを実行します。
+    ```
+    rm -rf StrandsAgentsBasic/
+    ```
+    
 1. リポジトリをクローンして、移動します。
     ```
     git clone https://github.com/tetsuo-nobe/StrandsAgentsBasic.git
